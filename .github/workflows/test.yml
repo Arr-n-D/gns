@@ -69,7 +69,7 @@ jobs:
         cd build
         msys2 cmake -G Ninja ..
         msys2 ninja
-        cp bin/libGameNetworkingSockets.dll ../../..
+        cp src/libGameNetworkingSockets.dll ../../..
 
     - name: Run tests
       run: | 
