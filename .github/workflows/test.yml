@@ -50,6 +50,7 @@ jobs:
       with:
         path-type: inherit
         update: true
+        msystem: MINGW64
         install: >-
           curl
           git
@@ -62,12 +63,18 @@ jobs:
   
     - name: Compile GameNetworkingSockets library
       run: |
+        set MSYSTEM=MINGW64
         cd lib/GameNetworkingSockets
         mkdir build
         cd build
         msys2 cmake -G Ninja ..
         msys2 ninja
+        ls -la  
+        ls -la bin/ 
+        ls -la src/ 
         cp bin/libGameNetworkingSockets.dll ../../..
 
     - name: Run tests
-      run: msys2 go test -v
+      run: | 
+        set MSYSTEM=MINGW64
+        msys2 go test -v
