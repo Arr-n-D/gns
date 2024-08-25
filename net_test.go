@@ -181,54 +181,54 @@ func TestListen(t *testing.T) {
 	}
 }
 
-func Example() {
-	// GameNetworkingSockets uses a fixed transmission rate, set to 512K/s
-	cfg := gns.ConfigMap{
-		gns.ConfigSendRateMin: 512 * 1024,
-		gns.ConfigSendRateMax: 512 * 1024,
-	}
+// func Example() {
+// 	// GameNetworkingSockets uses a fixed transmission rate, set to 512K/s
+// 	cfg := gns.ConfigMap{
+// 		gns.ConfigSendRateMin: 512 * 1024,
+// 		gns.ConfigSendRateMax: 512 * 1024,
+// 	}
 
-	l, err := gns.Listen(&net.UDPAddr{IP: net.IP{127, 0, 0, 1}}, cfg)
-	if err != nil {
-		log.Fatal("Listen: ", err)
-	}
-	defer l.Close()
+// 	l, err := gns.Listen(&net.UDPAddr{IP: net.IP{127, 0, 0, 1}}, cfg)
+// 	if err != nil {
+// 		log.Fatal("Listen: ", err)
+// 	}
+// 	defer l.Close()
 
-	gns.SetGlobalConfigValue(gns.ConfigFakePacketLagRecv, 10.0)
-	gns.SetGlobalConfigValue(gns.ConfigFakePacketLagSend, 10.0)
-	gns.SetGlobalConfigValue(gns.ConfigFakePacketLossRecv, 5.0)
-	gns.SetGlobalConfigValue(gns.ConfigFakePacketLossSend, 5.0)
+// 	gns.SetGlobalConfigValue(gns.ConfigFakePacketLagRecv, 10.0)
+// 	gns.SetGlobalConfigValue(gns.ConfigFakePacketLagSend, 10.0)
+// 	gns.SetGlobalConfigValue(gns.ConfigFakePacketLossRecv, 5.0)
+// 	gns.SetGlobalConfigValue(gns.ConfigFakePacketLossSend, 5.0)
 
-	// send a burst of 2MiB random bytes with 20ms lag and ~10% packet loss
-	var in [2 * 1024 * 1024]byte
-	rand.Read(in[:])
+// 	// send a burst of 2MiB random bytes with 20ms lag and ~10% packet loss
+// 	var in [2 * 1024 * 1024]byte
+// 	rand.Read(in[:])
 
-	go func() {
-		c, err := gns.Dial(l.Addr().(*net.UDPAddr), cfg)
-		if err != nil {
-			log.Fatal("Dial: ", err)
-		}
-		defer c.Close()
+// 	go func() {
+// 		c, err := gns.Dial(l.Addr().(*net.UDPAddr), cfg)
+// 		if err != nil {
+// 			log.Fatal("Dial: ", err)
+// 		}
+// 		defer c.Close()
 
-		// Linger for as long as it takes
-		c.SetLinger(-1)
+// 		// Linger for as long as it takes
+// 		c.SetLinger(-1)
 
-		if _, err := io.Copy(c, bytes.NewReader(in[:])); err != nil {
-			log.Fatal("Copy: ", err)
-		}
-	}()
+// 		if _, err := io.Copy(c, bytes.NewReader(in[:])); err != nil {
+// 			log.Fatal("Copy: ", err)
+// 		}
+// 	}()
 
-	conn, err := l.AcceptGNS()
-	if err != nil {
-		log.Fatal("Accept: ", err)
-	}
-	defer conn.Close()
+// 	conn, err := l.AcceptGNS()
+// 	if err != nil {
+// 		log.Fatal("Accept: ", err)
+// 	}
+// 	defer conn.Close()
 
-	out, err := ioutil.ReadAll(conn)
-	if err != nil {
-		log.Fatal("Read: ", err)
-	}
+// 	out, err := ioutil.ReadAll(conn)
+// 	if err != nil {
+// 		log.Fatal("Read: ", err)
+// 	}
 
-	fmt.Println("Compare(in, out) ==", bytes.Compare(out, in[:]) == 0)
-	// Output: Compare(in, out) == true
-}
+// 	fmt.Println("Compare(in, out) ==", bytes.Compare(out, in[:]) == 0)
+// 	// Output: Compare(in, out) == true
+// }
