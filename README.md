@@ -1,7 +1,7 @@
 GameNetworkingSockets
 =====================
 [![build](https://github.com/Arr-n-D/gns/workflows/test/badge.svg)](https://github.com/Arr-n-D/gns/actions/)
-[![GoDoc](https://godoc.org/github.com/Arr-n-D/gns?status.svg)](https://godoc.org/github.com/Arr-n-D/gns)
+[![GoDoc](https://godoc.org/github.com/arr-n-d/gns?status.svg)](https://godoc.org/github.com/arr-n-d/gns)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 
 Package gns provides golang bindings for the [GameNetworkingSockets](https://github.com/ValveSoftware/GameNetworkingSockets/) library.
