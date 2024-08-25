@@ -32,6 +32,7 @@ jobs:
         ninja
         echo "LD_LIBRARY_PATH=$(pwd)/src:${LD_LIBRARY_PATH}" >> $GITHUB_ENV
         echo $LD_LIBRARY_PATH
+        ls -la
 
 
     - name: Run tests
