@@ -49,10 +49,10 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         path-type: inherit
-
-    - name: Install dependencies
-      run: "msys2do 
-        pacman -S --noconfirm
+        update: true
+        install: >-
+          curl
+          git
           mingw-w64-x86_64-gcc
           mingw-w64-x86_64-go
           mingw-w64-x86_64-ninja
@@ -70,4 +70,4 @@ jobs:
         cp src/libGameNetworkingSockets.dll ../../..
 
     - name: Run tests
-      run: msys2do go test -v
+      run: msys2 go test -v
