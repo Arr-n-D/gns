@@ -5,12 +5,7 @@
 package gns_test
 
 import (
-	"bytes"
-	"crypto/rand"
-	"fmt"
 	"io"
-	"io/ioutil"
-	"log"
 	"net"
 	"testing"
 	"time"
