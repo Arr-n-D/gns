@@ -58,15 +58,15 @@ jobs:
           mingw-w64-x86_64-ninja
           mingw-w64-x86_64-openssl
           mingw-w64-x86_64-pkg-config
-          mingw-w64-x86_64-protobuf"
+          mingw-w64-x86_64-protobuf
   
     - name: Compile GameNetworkingSockets library
       run: |
         cd lib/GameNetworkingSockets
         mkdir build
         cd build
-        msys2do cmake -G Ninja ..
-        msys2do ninja
+        msys2 cmake -G Ninja ..
+        msys2 ninja
         cp src/libGameNetworkingSockets.dll ../../..
 
     - name: Run tests
