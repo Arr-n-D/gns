@@ -63,13 +63,12 @@ jobs:
   
     - name: Compile GameNetworkingSockets library
       run: |
-        
+        set MSYSTEM=mingw64
         cd lib/GameNetworkingSockets
         mkdir build
         cd build
         msys2 cmake -G Ninja ..
         msys2 ninja
-      
         cp bin/libGameNetworkingSockets.dll ../../..
 
     - name: Run tests
