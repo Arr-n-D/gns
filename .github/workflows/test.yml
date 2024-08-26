@@ -33,5 +33,5 @@ jobs:
         echo "LD_LIBRARY_PATH=$(pwd)/bin:${LD_LIBRARY_PATH}" >> $GITHUB_ENV
 
     - name: Run tests
-      run: go test -v
+      run: go test -v 
   
