@@ -13,7 +13,7 @@ jobs:
     - name: Install Go
       uses: actions/setup-go@v5
       with:
-        go-version: 1.14.x
+        go-version: 1.23.x
 
     - name: Install dependencies
       run: |
@@ -65,7 +65,7 @@ jobs:
         cd build
         msys2 -c  'cmake -G Ninja ..'
         msys2 -c  'ninja'
-        cp src/libGameNetworkingSockets.dll ../../..
+        cp bin/libGameNetworkingSockets.dll ../../..
 
     - name: Run tests
       run: msys2 -c 'go test -v'
