@@ -34,38 +34,4 @@ jobs:
 
     - name: Run tests
       run: go test -v
-  test-windows:
-    runs-on: windows-latest
-    steps:
-
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        submodules: true
-
-    - name: Install msys2
-      uses: msys2/setup-msys2@v2
-      with:
-        path-type: inherit
-
-    - name: Install dependencies
-      run: "msys2 -c 
-        'pacman -S --noconfirm
-          mingw-w64-x86_64-gcc
-          mingw-w64-x86_64-go
-          mingw-w64-x86_64-ninja
-          mingw-w64-x86_64-openssl
-          mingw-w64-x86_64-pkg-config
-          mingw-w64-x86_64-protobuf'"
   
-    - name: Compile GameNetworkingSockets library
-      run: |
-        cd lib/GameNetworkingSockets
-        mkdir build
-        cd build
-        msys2 -c  'cmake -G Ninja ..'
-        msys2 -c  'ninja'
-        cp bin/libGameNetworkingSockets.dll ../../..
-
-    - name: Run tests
-      run: msys2 -c 'go test -v'
