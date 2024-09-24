@@ -608,6 +608,7 @@ func NewIPAddr(addr *net.UDPAddr) *IPAddr {
 		C.SteamAPI_SteamNetworkingIPAddr_SetIPv6(&res, (*C.uint8_t)(&ip16[0]), port)
 	} else {
 		C.SteamAPI_SteamNetworkingIPAddr_Clear(&res)
+		res.m_port = port
 	}
 
 	return &res
